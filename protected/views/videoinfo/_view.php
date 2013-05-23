@@ -5,31 +5,31 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('video_id')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('视频名称')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->video_id), array('view', 'id'=>$data->video_id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('uploader')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('上传者')); ?>:</b>
 	<?php echo CHtml::encode($data->uploader); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('age')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('上传时间')); ?>:</b>
 	<?php echo CHtml::encode($data->age); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('category')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('视频类型')); ?>:</b>
 	<?php echo CHtml::encode($data->category); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('length')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('长度')); ?>:</b>
 	<?php echo CHtml::encode($data->length); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('views')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('点击量')); ?>:</b>
 	<?php echo CHtml::encode($data->views); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('rate')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('评分')); ?>:</b>
 	<?php echo CHtml::encode($data->rate); ?>
 	<br />
 

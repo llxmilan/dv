@@ -3,16 +3,18 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Videoinfos',
+	'视频基本信息',
 );
 
+/*
 $this->menu=array(
-	array('label'=>'Create videoinfo', 'url'=>array('create')),
-	array('label'=>'Manage videoinfo', 'url'=>array('admin')),
-);
-?>
+	array('label'=>'新建', 'url'=>array('create')),
+	array('label'=>'管理', 'url'=>array('admin')),
 
-<h1>Videoinfos</h1>
+);
+*/
+
+?>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

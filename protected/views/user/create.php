@@ -13,6 +13,5 @@ $this->menu=array(
 */
 ?>
 
-<h3>欢迎加入数据可视化网站</h3>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

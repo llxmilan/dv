@@ -49,7 +49,7 @@ class TbHeroUnit extends CWidget
 		echo CHtml::openTag('div', $this->htmlOptions);
 
 		if (isset($this->heading))
-			echo CHtml::tag('h1', $this->headingOptions, $this->heading);
+			echo CHtml::tag('h2', $this->headingOptions, $this->heading);
 	}
 
 	/**

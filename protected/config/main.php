@@ -5,9 +5,41 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
+return array(
+	'preload'=>array('log','bootstrap'),
+	'name'=>'',
+	'import'=>array(
+		'application.models.*',
+		'application.components.*',
+	),
+	'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
+	'modules'=>array(
+		'gii'=>array(
+		'generatorPaths'=>array(
+				'bootstrap.gii',
+			),
+		),
+	),
+	'components'=>array(
+		'db'=>array(
+			'connectionString' => 'mysql:host=192.168.1.170;dbname=youtubedb',
+			'emulatePrepare' => true,
+			'username' => 'hive',
+			'password' => '123456',
+			'charset' => 'utf8',
+		),
+
+		'bootstrap'=>array(
+			'class'=>'bootstrap.components.Bootstrap',
+		),
+	),
+);
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'数据可视化网',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -85,6 +117,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'liuzhipeng197@163.com',
 	),
 );

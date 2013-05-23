@@ -16,55 +16,55 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'video_id'); ?>
+		<?php echo $form->labelEx($model,'视频名称'); ?>
 		<?php echo $form->textField($model,'video_id',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'video_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'uploader'); ?>
+		<?php echo $form->labelEx($model,'上传者'); ?>
 		<?php echo $form->textField($model,'uploader',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'uploader'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'age'); ?>
+		<?php echo $form->labelEx($model,'上传时间'); ?>
 		<?php echo $form->textField($model,'age'); ?>
 		<?php echo $form->error($model,'age'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'category'); ?>
+		<?php echo $form->labelEx($model,'类型'); ?>
 		<?php echo $form->textField($model,'category',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'category'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'length'); ?>
+		<?php echo $form->labelEx($model,'视频长度'); ?>
 		<?php echo $form->textField($model,'length'); ?>
 		<?php echo $form->error($model,'length'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'views'); ?>
+		<?php echo $form->labelEx($model,'点击量'); ?>
 		<?php echo $form->textField($model,'views'); ?>
 		<?php echo $form->error($model,'views'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'rate'); ?>
+		<?php echo $form->labelEx($model,'评分'); ?>
 		<?php echo $form->textField($model,'rate'); ?>
 		<?php echo $form->error($model,'rate'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'ratings'); ?>
+		<?php echo $form->labelEx($model,'评分数'); ?>
 		<?php echo $form->textField($model,'ratings'); ?>
 		<?php echo $form->error($model,'ratings'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'comments'); ?>
+		<?php echo $form->labelEx($model,'评论数'); ?>
 		<?php echo $form->textField($model,'comments'); ?>
 		<?php echo $form->error($model,'comments'); ?>
 	</div>

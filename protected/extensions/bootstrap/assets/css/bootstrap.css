@@ -4807,7 +4807,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .brand {
-  color: #999999;
+  color: #ffffff;
 }
 
 .navbar-inverse .navbar-text {
@@ -4850,8 +4850,8 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-inverse .nav li.dropdown > a:hover .caret,
 .navbar-inverse .nav li.dropdown > a:focus .caret {
-  border-top-color: #ffffff;
-  border-bottom-color: #ffffff;
+  border-top-color: #00B7FF;
+  border-bottom-color: #111111;
 }
 
 .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {

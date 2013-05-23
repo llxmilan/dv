@@ -31,10 +31,37 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index');
 	}
+	
+	
+	/*	
+	public function loadModel($id)                                                             
+	{       
+		$model=TableInfo::model()->findByPk($id);                                          
+		if($model===null) 
+			throw new CHttpException(404,'The requested page does not exist.');        
+		return $model;                                                                     
+	}                                                                                          
+        
 
 	/**
 	 * This is the action to handle external exceptions.
 	 */
+	/**
+	* Manages all models.                                                                     
+	*/
+	/*	
+	public function actionView()                                                              
+	{       
+		$table_name=$this->loadModel($id);
+		$dataProvider=new CActiveDataProvider($table_name)
+		$model->unsetAttributes();  // clear any default values
+		                            
+		$this->render('admin',array(
+			'dataProvider'=>$dataProvider,	
+		));                                                                                
+	}                                                                      
+	
+	*/
 	public function actionError()
 	{
 		if($error=Yii::app()->errorHandler->error)
@@ -72,6 +99,7 @@ class SiteController extends Controller
 		$this->render('contact',array('model'=>$model));
 	}
 
+
 	/**
 	 * Displays the login page
 	 */
@@ -105,5 +133,13 @@ class SiteController extends Controller
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
+	}
+
+	public function actionGraph()
+	{
+		$dataProvider=new CActiveDataProvider('TableInfo');
+		$this->render('graph',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 }

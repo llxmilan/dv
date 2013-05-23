@@ -3,13 +3,14 @@
 /* @var $model videoinfo */
 
 $this->breadcrumbs=array(
-	'Videoinfos'=>array('index'),
-	'Create',
+	'视频基本信息'=>array('index'),
+	'新建',
 );
 
 $this->menu=array(
-	array('label'=>'List videoinfo', 'url'=>array('index')),
-	array('label'=>'Manage videoinfo', 'url'=>array('admin')),
+	array('label'=>'查看基本信息', 'url'=>array('index')),
+	array('label'=>'管理信息', 'url'=>array('admin')),
+
 );
 ?>
 
