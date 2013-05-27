@@ -43,7 +43,22 @@
 					<input class='input-xlarge' type='text' placeholder='etltool parameters...'>
 				</div>
 				<div class='span2'>
-					<button class="btn btn-primary" type="button">执行测试</button>
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+    						'buttonType'=>'button',
+    						'type'=>'primary',
+    						'label'=>'执行测试',
+    						'loadingText'=>'测试中...',
+    						'htmlOptions'=>array('id'=>'buttonStateful'),
+					)); ?>
+					<script>
+					$('#buttonStateful').click(function() {
+    						var btn = $(this);
+    						btn.button('loading'); // call the loading function
+    						setTimeout(function() {
+        					btn.button('reset'); // call the reset function
+    						}, 3000);
+					});
+					</script>
 				</div>
 				
 			</div>
