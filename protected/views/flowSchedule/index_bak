@@ -1,0 +1,44 @@
+<?php
+
+?>
+<div class='container-fluid'>
+        <div class='row-fluid'>
+                <div class='span2' style='margin-left:-20px'>
+                        <?php $this->widget('bootstrap.widgets.TbMenu', array(
+                                'type'=>'list',
+                                'items'=>array(
+                                         array('label'=>'สี','icon'=>'home', 'url'=>array('index'),'active'=>'true'),
+                                         array('label'=>'edit', 'icon'=>'book', 'url'=>array('list')),
+                                         array('label'=>'add', 'icon'=>'pencil', 'url'=>array('create')),
+                                         array('label'=>'user','icon'=>'user'),
+
+                                 /*
+                                 array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
+                                 array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
+                                 array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),
+                                */
+                                ),
+                        )); ?>
+                </div>
+                <div class='span10'>
+			<div class="search-form" >
+				<?php $this->renderPartial('_search',array(
+        				'model'=>$model,
+				)); ?>
+			</div><!-- search-form -->
+
+			<?php $this->widget('zii.widgets.grid.CGridView', array(
+        			'id'=>'flow-schedule-grid',
+        			'dataProvider'=>$model->search(),
+        			//'filter'=>$model,
+        			'columns'=>array(
+                			'fs_id',
+                			'fs_name',
+                			'fs_type',
+                			'fs_reload',
+                			'fs_delta',
+        			),
+			));?>
+                </div>
+        </div>
+</div>

@@ -8,6 +8,7 @@
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 
 return array(
+	'language'=>'zh_cn',
 	'preload'=>array('log','bootstrap'),
 	'name'=>'',
 	'import'=>array(
@@ -17,6 +18,10 @@ return array(
 	'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
 	'modules'=>array(
 		'gii'=>array(
+                'class'=>'system.gii.GiiModule',
+                'password'=>'rootroot',
+                // If removed, Gii defaults to localhost only. Edit carefully to taste.
+                'ipFilters'=>false,
 		'generatorPaths'=>array(
 				'bootstrap.gii',
 			),
@@ -24,7 +29,7 @@ return array(
 	),
 	'components'=>array(
 		'db'=>array(
-			'connectionString' => 'mysql:host=192.168.1.170;dbname=youtubedb',
+			'connectionString' => 'mysql:host=localhost;dbname=youtubedb',
 			'emulatePrepare' => true,
 			'username' => 'hive',
 			'password' => '123456',

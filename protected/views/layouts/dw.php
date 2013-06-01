@@ -2,6 +2,10 @@
 Yii::app()->bootstrap->register()
 ?>
 
+<?php
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/protected/extensions/jquery.scrolltotop.js');                                                                            
+
+?>
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -22,9 +26,6 @@ Yii::app()->bootstrap->register()
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-
-
-
 </head>
 <body>
 
@@ -36,7 +37,7 @@ Yii::app()->bootstrap->register()
 	<div id="mainmenu" class="row">
 		<?php $this->widget('bootstrap.widgets.TbNavbar',array(
 			'type'=>'inverse',
-			'brand'=>'数据可视化',
+			'brand'=>'数据仓库',
 			'brandUrl'=>'#',
 			'htmlOptions'=>array('style'=>'background-color:#ffffff'),
 			'collapse'=>false,
@@ -48,7 +49,7 @@ Yii::app()->bootstrap->register()
 						array('label'=>'云计算', 'url'=>array('/cloudComputing/index')),
 						array('label'=>'数据可视化', 'url'=>array('/dataView/index')),
 						array('label'=>'数据仓库','url'=>array('/dataWarehouse/index')),
-						array('label'=>'数据挖掘', 'url'=>array('dataMing/index')),
+						array('label'=>'数据挖掘', 'url'=>array('/dataMing/index')),
 						//array('label'=>'云计算', 'url'=>array('/site/login')),
 						//array('label'=>'注销 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 					)),
@@ -58,14 +59,6 @@ Yii::app()->bootstrap->register()
 					'htmlOptions'=>array('class'=>'pull-right'),
 					'items'=>array(
 						array('label'=>'联系', 'url'=>array('/site/contact')),
-						/*
-						array('label'=>'相关内容', 'url'=>'#', 'items'=>array(
-							array('label'=>'云计算', 'url'=>'#'),
-							array('label'=>'数据仓库', 'url'=>'#'),
-							array('label'=>'数据挖掘', 'url'=>'#'),
-							array('label'=>'大数据', 'url'=>'#'),
-						)),
-						*/
 						array('label'=>'注册', 'url'=>array('/user/create')),
 						array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                                                 array('label'=>'注销 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
@@ -78,22 +71,24 @@ Yii::app()->bootstrap->register()
 		<img style="margin-top:20px" src='../../images/dataview_logo.png'/>
 	</div-->
 	<div class='row' style="margin-top:20px">
-		<div class='span3'>
-                	<img  src='../../images/dataview_logo.png'/>
+		<div class='span2'>
+                	<img  src='../../images/dataWarehouse_logo.png'/>
 		</div>
 		<div id='firstmenu' class="span8">
                 	<?php $this->widget('bootstrap.widgets.TbMenu', array(
                         	'type'=>'pills', // '', 'tabs', 'pills' (or 'list')
                         	'stacked'=>false, // whether this is a stacked menu
                         	'items'=>array(
-                                	array('label'=>'首页', 'icon'=>'home', 'url'=>array('/dataView/index')),
-                                	array('label'=>'数据报表', 'icon'=>'th','url'=>array('/videoinfo/index')),
-                                	array('label'=>'可视化图形', 'icon'=>'camera','url'=>array('/site/graph')),
+                                	array('label'=>'首页', 'icon'=>'home', 'url'=>array('/dataWarehouse/index')),
+                    	            	array('label'=>'ETL流程', 'icon'=>'th','url'=>array('/flowInfo/index')),
+                                	array('label'=>'流程注册', 'icon'=>'leaf','url'=>array('/flowSchedule/index')),
+					array('label'=>'数据查询', 'icon'=>'camera','url'=>array('#')),
+
                         	),
                 	)); ?>
         	</div>
 	</div>
-	<div id="breadcrumbs">
+	<div id="breadcrumbs"  style="margin-left:10%;margin-right:10%">
 		<?php if(isset($this->breadcrumbs)):?>
 				<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array('links'=>$this->breadcrumbs,));?><!-- breadcrumbs -->
 		<?php endif?>
@@ -101,70 +96,16 @@ Yii::app()->bootstrap->register()
 	<div>
 		<?php echo $content; ?>
 	</div>
-
 	<div class="clear"></div>
-</div>
-	<div class='container' style='background-color:#FEFBF3;margin-top:-5px'>
-		<div class='row-fluid'>
-			<div class='span4'>
-				<div class='row-fluid'>
-					<div class='span5 offset1'>
-						<h5 class='page-header' align='left'>联系我们</h5>
-					</div>
-				</div>
-				<div class='row-fluid'>
-					<div class='span5 offset1' style='margin-top:-20px'>
-						<p class='text-info' align='left'><small>
-							<strong>地址:</strong>北四环中路211号<br>
-							<strong>电话:</strong>51615782</a><br>
-							<strong>Email:</strong>liuzp@nctc.org.cn</a> </p></small>
-					</div>
-				</div>
-			</div>
-			<div class='span4'>
-				<div class='row-fluid'>
-					<div class='span4 offset1'>		
-						<h5 class='page-header' align='left'>这里有我们...</h5>
-					</div>
-				</div>
-				<div class='row-fluid'>
-					<div class='span1 offset1' style='margin-top:-20px'>
-						<a href="http://weibo.com/u/1766142357?wvr=5&topnav=1&wvr=5" title="新浪微博"><img src='images/weibo.jpg' /></a>
-                                	</div>
-					<div class='span1' style='margin-top:-20px'>
-						<a href="http://www.douban.com/people/45040235/" title="豆瓣网"><img src='images/douban.gif' /></a>
-					</div>
-					<div class='span1' style='margin-top:-20px'>
-                                                <a href="http://www.renren.com/222370766" title="人人网"><img src='images/renren.jpg' /></a>	
-					</div>
-					<div class='span1' style='margin-top:-20px'>
-                                                <a href="http://user.qzone.qq.com/275266207/infocenter" title="qq空间"><img src='images/qq.jpg' /></a>       
-                                        </div>
-				</div>		
-			</div>
-			<div class='span4'>
-				<div class='row-fluid'>
-					<div class='span4 offset1'>
-						<h5 class='page-header'>关于我们</h5>
-					</div>
-				</div>
-				 <div class='row-fluid'>
-                                        <div class='span6 offset1' style='margin-top:-20px'>
-                                                <p class='text-info' align='left' font-size='5px'><small>
-                                                        <strong>国家计算机质检中心</strong></a><br>
-                                                        <strong>存储测评中心</strong></a></small>
-						</p>
-                                        </div>
-                                </div>
 
-			</div>
-		</div>
-		<div class='row-fluid' align='center' style='background-color:#497477;font-size:5px'>
-			Copyright &copy; <?php echo date('Y'); ?> by NCTC.<br/>
-			All Rights Reserved.<br/>
-			<?php echo Yii::powered(); ?>
-		</div>
-	</div><!--container-->
-	
+</div>
+
+	<div id="footer">
+		Copyright &copy; <?php echo date('Y'); ?> by NCTC.<br/>
+		All Rights Reserved.<br/>
+		<?php echo Yii::powered(); ?>
+	</div><!-- footer -->
+
+
 </body>
 </html>

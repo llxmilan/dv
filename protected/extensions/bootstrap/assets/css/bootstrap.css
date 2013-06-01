@@ -77,9 +77,13 @@ a:focus {
   outline-offset: -2px;
 }
 
-a:hover,
+a:hover{
+  text-decoration:none;
+}
+
 a:active {
   outline: 0;
+  text-decoration:none;
 }
 
 sub,

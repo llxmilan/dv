@@ -1,20 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "tbl_user".
+ * This is the model class for table "flow_schedule".
  *
- * The followings are the available columns in table 'tbl_user':
- * @property integer $id
- * @property string $username
- * @property string $password
- * @property string $email
+ * The followings are the available columns in table 'flow_schedule':
+ * @property integer $fs_id
+ * @property string $fs_name
+ * @property string $fs_type
+ * @property integer $fs_reload
+ * @property integer $fs_delta
  */
-class User extends CActiveRecord
+class FlowSchedule extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return FlowSchedule the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -26,7 +27,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'tbl_user';
+		return 'flow_schedule';
 	}
 
 	/**
@@ -37,11 +38,11 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
-			array('username, password, email', 'length', 'max'=>128),
+			array('fs_id, fs_reload, fs_delta', 'numerical', 'integerOnly'=>true),
+			array('fs_name, fs_type', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, password, email', 'safe', 'on'=>'search'),
+			array('fs_id, fs_name, fs_type, fs_reload, fs_delta', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,10 +63,11 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'email' => 'Email',
+			'fs_id' => 'Fs',
+			'fs_name' => 'Fs Name',
+			'fs_type' => 'Fs Type',
+			'fs_reload' => 'Fs Reload',
+			'fs_delta' => 'Fs Delta',
 		);
 	}
 
@@ -80,10 +82,11 @@ class User extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('email',$this->email,true);
+		$criteria->compare('fs_id',$this->fs_id);
+		$criteria->compare('fs_name',$this->fs_name,true);
+		$criteria->compare('fs_type',$this->fs_type,true);
+		$criteria->compare('fs_reload',$this->fs_reload);
+		$criteria->compare('fs_delta',$this->fs_delta);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

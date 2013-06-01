@@ -1,12 +1,12 @@
 <?php
 
-class UserVisitCategoryDailyController extends Controller
+class FlowInfoController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/dw';
 
 	/**
 	 * @return array action filters
@@ -28,11 +28,11 @@ class UserVisitCategoryDailyController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','graph'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','list'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -62,16 +62,24 @@ class UserVisitCategoryDailyController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new UserVisitCategoryDaily;
+		$model=new FlowInfo;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['UserVisitCategoryDaily']))
+		if(isset($_POST['FlowInfo']))
 		{
-			$model->attributes=$_POST['UserVisitCategoryDaily'];
+			$model->attributes=$_POST['FlowInfo'];
+			$model->flow_creator=Yii::app()->user->name;
+			$parameters='python /root/etltools/nstc_etl_tool/etltool.py -f' . $model->flow_name . $model->parameter;
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->category_id));
+				chdir('etl_flow');
+				$file_name=$model->flow_name . '.sql';	
+				$file=fopen($file_name,'w+');
+				fwrite($file,$model->flow_content);
+				fclose($file);
+				system($parameters);
+				//$this->redirect(array('view','id'=>$model->flow_id));
 		}
 
 		$this->render('create',array(
@@ -91,11 +99,11 @@ class UserVisitCategoryDailyController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['UserVisitCategoryDaily']))
+		if(isset($_POST['FlowInfo']))
 		{
-			$model->attributes=$_POST['UserVisitCategoryDaily'];
+			$model->attributes=$_POST['FlowInfo'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->category_id));
+				$this->redirect(array('view','id'=>$model->flow_id));
 		}
 
 		$this->render('update',array(
@@ -120,9 +128,10 @@ class UserVisitCategoryDailyController extends Controller
 	/**
 	 * Lists all models.
 	 */
+	/*
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('UserVisitCategoryDaily');
+		$dataProvider=new CActiveDataProvider('FlowInfo');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -131,35 +140,45 @@ class UserVisitCategoryDailyController extends Controller
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
+	public function actionIndex()
 	{
-		$model=new UserVisitCategoryDaily('search');
+		$model=new FlowInfo('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['UserVisitCategoryDaily']))
-			$model->attributes=$_GET['UserVisitCategoryDaily'];
+		if(isset($_GET['FlowInfo']))
+			$model->attributes=$_GET['FlowInfo'];
 
-		$this->render('admin',array(
+		$this->render('index',array(
 			'model'=>$model,
 		));
 	}
-	
-	public function actionGraph()
-	{
-		$model=new UserVisitCategoryDaily('');
-		$this->render('graph',array(
-			'model'=>$model,
-		));
-	}
+
+	public function actionList()
+        {
+                $creator=Yii::app()->user->name;
+		$model=new FlowInfo();
+		//$model=FlowInfo::model()->findByPk(1);
+		//$model=FlowInfo::model()->findAllBySql("select flow_id,flow_name,flow_creator,flow_position  from flow_info where flow_creator='admin'");
+                /*
+		$model->unsetAttributes();  // clear any default values
+
+                if(isset($_GET['FlowInfo']))
+                        $model->attributes=$_GET['FlowInfo'];
+		
+		*/
+                $this->render('list',array(
+                        'model'=>$model,
+                ));
+        }
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return UserVisitCategoryDaily the loaded model
+	 * @return FlowInfo the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=UserVisitCategoryDaily::model()->findByPk($id);
+		$model=FlowInfo::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -167,11 +186,11 @@ class UserVisitCategoryDailyController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param UserVisitCategoryDaily $model the model to be validated
+	 * @param FlowInfo $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='user-visit-category-daily-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='flow-info-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

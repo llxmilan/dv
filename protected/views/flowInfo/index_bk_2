@@ -1,0 +1,24 @@
+<?php
+/* @var $this FlowInfoController */
+/* @var $dataProvider CActiveDataProvider */
+
+?>
+<div class='container-fluid'>
+	<div class='row-fluid'>                                                                            
+        	<div class='span2'>                                                
+                	<div class="well sider-nav">
+				<ul class="nav nav-list">
+					<li class='nav header'>Sidebar</li>
+					<li><a href="#">show</a></li>
+				<ul>
+			</div>           
+        	</div> 
+        	<div class='span10'>                                                                        
+        	<?php $this->widget('zii.widgets.CListView', array(
+        		'dataProvider'=>$dataProvider,
+        		'itemView'=>'_view',
+		)); ?>
+		</div>
+        </div>
+</div>  
+

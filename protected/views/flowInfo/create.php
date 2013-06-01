@@ -31,37 +31,6 @@
 		</div>
         	<div class='span10'> 
 			<?php echo $this->renderPartial('_form',array('model'=>$model));?>                                                   		
-			<div class='row-fluid'>
-				<div class='span1'>
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'参数',
-    					'type'=>'danger',
-    					'htmlOptions'=>array('data-title'=>'A Title', 'data-content'=>'-f flowfile  ' . ' -p -r', 'rel'=>'popover'),
-				)); ?>
-				</div>
-				<div class='span4'>
-					<input class='input-xlarge' type='text' placeholder='etltool parameters...'>
-				</div>
-				<div class='span2'>
-					<?php $this->widget('bootstrap.widgets.TbButton', array(
-    						'buttonType'=>'button',
-    						'type'=>'primary',
-    						'label'=>'执行测试',
-    						'loadingText'=>'测试中...',
-    						'htmlOptions'=>array('id'=>'buttonStateful'),
-					)); ?>
-					<script>
-					$('#buttonStateful').click(function() {
-    						var btn = $(this);
-    						btn.button('loading'); // call the loading function
-    						setTimeout(function() {
-        					btn.button('reset'); // call the reset function
-    						}, 3000);
-					});
-					</script>
-				</div>
-				
-			</div>
 		</div>
         </div>
 </div>  

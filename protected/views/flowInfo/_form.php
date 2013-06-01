@@ -8,14 +8,14 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'flow-info-form',
-	'enableAjaxValidation'=>true,
+	//'enableAjaxValidation'=>true,
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
                 'validateOnSubmit'=>true,
                 ),
 )); ?>
 
-	<?php echo $form->errorSummary($model); ?>
+	<!--?php echo $form->errorSummary($model); ?-->
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'流程名称'); ?>
@@ -25,48 +25,69 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'流程内容'); ?>
-		<?php echo $form->textArea($model,'flow_content',array('size'=>20,'maxlength'=>20,'style'=>'width:600px;height:500px')); ?>
+		<?php echo $form->textArea($model,'flow_content',array('size'=>2000,'maxlength'=>2000,'style'=>'width:600px;height:500px')); ?>
 		<?php echo $form->error($model,'flow_content'); ?>
 	</div>
 	
 	<div class="row buttons">
 		   <?php $this->widget('bootstrap.widgets.TbButton',array(
-                                //'buttonType'=>'submit',
+                                'buttonType'=>'submit',
                                 'type'=>'primary',
                                 'size'=>'normal',
                                 'label'=>'保存',
-				'htmlOptions'=>array(
-					'data-toggle'=>'modal',
-					'data-target'=>'#myModal',
-				),
                    ));?>
 	</div>
-
-	<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'myModal')); ?>
- 		<div class="modal-header">
-    			<a class="close" data-dismiss="modal">&times;</a>
-    			<h4><?php $model->flow_name; ?></h4>
-		</div>	
- 
-		<div class="modal-body">
-    			<p><?php $model->flow_content; ?></p>
-		</div>
- 
-		<div class="modal-footer">
-    			<?php $this->widget('bootstrap.widgets.TbButton', array(
-        			'buttonType'=>'submit',
-				'type'=>'primary',
-        			'label'=>'确定保存',
-        			//'htmlOptions'=>array('data-dismiss'=>'modal'),
-    			)); ?>
-    			<?php $this->widget('bootstrap.widgets.TbButton', array(
-        			'label'=>'取消',
-        			'url'=>'#',
-        			'htmlOptions'=>array('data-dismiss'=>'modal'),
-    			)); ?>
-		</div>
-	<?php $this->endWidget(); ?>
-
+	
+ 	<div class='row'>
+              			<div class='span1'>
+                                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                                        'label'=>'参数',
+                                        'type'=>'danger',
+                                        'htmlOptions'=>array('data-title'=>'A Title', 'data-content'=>'-f flowfile  ' . ' -p -r', 'rel'=>'popover'),
+                                )); ?>
+                                </div>
+                                <div class='span4'>
+                                        <!--input id='parameters' class='input-xlarge' type='text' placeholder='etltool parameters...'-->
+		                	<?php echo $form->textField($model,'parameter',array('size'=>20,'maxlength'=>20,'placeholder'=>'etltool parameters...')); ?>                                                              
+                                </div>
+                                <div class='span2'>
+                                        <?php $this->widget('bootstrap.widgets.TbButton', array(
+                                                'buttonType'=>'button',
+                                                'type'=>'primary',
+                                                'label'=>'执行测试',
+                                                'loadingText'=>'测试中...',
+                                                'htmlOptions'=>array('id'=>'buttonStateful'),
+                                        )); ?>
+				</div>
+	</div>
+	<div class='row'>
+		<p id="demo"></p>
+	</div>
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+<?php
+	//$results=system("ls");
+?>
+<script>                                                                                                                                                              
+                                        $('#buttonStateful').click(function() {
+					 var btn = $(this);
+					btn.button('loading');
+					var a='<?php system('ls'); ?>');
+					
+                                        setTimeout(function() {
+						btn.button('reset')
+					 }, 3000);                                                                                                                                             
+                                        });                                                                                                                                                           
+                                                                                                                                                                                                      
+                                        /*                                                                                                                                                            
+                                        $('#buttonStateful').click(function() {                                                                                                                       
+                                                 var btn = $(this);                                                                                                                                   
+                                                btn.button('loading'); // call the loading function                                                                                                   
+                                                setTimeout(function() {                                                                                                                               
+                                                        btn.button('reset'); // call the reset function                                                                                               
+                                                        }, 3000);                                                                                                                                     
+                                                });                                                                                                                                                   
+                                        */                                                                                                                                                            
+</script>    
+
