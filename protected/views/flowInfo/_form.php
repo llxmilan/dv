@@ -2,8 +2,19 @@
 /* @var $this FlowInfoController */
 /* @var $model FlowInfo */
 /* @var $form CActiveForm */
+/*
+	if (!session_id()) session_start();
+		$flow=new FlowInfo();
+		$etlfilename='1';
+		if(isset($_POST['FlowInfo']))
+		{
+			$flow->attributes=$_POST['FlowInfo'];
+			$_SESSION['etlfilename'] = $flow->flow_name;
+			$etlfilename = $flow->flow_name;
+			echo $flow->flow_name;
+		}
+*/
 ?>
-
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -19,7 +30,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'流程名称'); ?>
-		<?php echo $form->textField($model,'flow_name',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->textField($model,'flow_name',array('size'=>20,'maxlength'=>20,'id'=>'etlname')); ?>
 		<?php echo $form->error($model,'flow_name'); ?>
 	</div>
 
@@ -51,43 +62,55 @@
 		                	<?php echo $form->textField($model,'parameter',array('size'=>20,'maxlength'=>20,'placeholder'=>'etltool parameters...')); ?>                                                              
                                 </div>
                                 <div class='span2'>
-                                        <?php $this->widget('bootstrap.widgets.TbButton', array(
-                                                'buttonType'=>'button',
-                                                'type'=>'primary',
-                                                'label'=>'执行测试',
-                                                'loadingText'=>'测试中...',
-                                                'htmlOptions'=>array('id'=>'buttonStateful'),
-                                        )); ?>
+					<script>
+						function exec_etl()
+						{
+							var filename=document.getElementById('etlname').value;
+							//document.getElementById('testcontent').innerHTML=filename;
+							$.post("protected/views/flowInfo/execetl.php",{action:"start_test",name:filename},function(data){
+								document.getElementById('testcontent').innerHTML=data;
+								});
+						}
+					</script>
+					<?php $this->widget('bootstrap.widgets.TbButton', array(
+    						'buttonType'=>'submit',
+						'label'=>'测试',
+    						'type'=>'primary',
+    						'htmlOptions'=>array(
+        						'data-toggle'=>'modal',
+        						'data-target'=>'#myModal',
+							'onclick'=>'exec_etl()',
+    							),
+					)); ?>
+					<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'myModal')); ?>
+ 
+						<div class="modal-header">
+    							<a class="close" data-dismiss="modal">&times;</a>
+    							<h4>测试过程</h4>
+						</div>
+	 
+						<div class="modal-body" id='testcontent'>
+ 
+						</div>
+ 
+						<div class="modal-footer">
+ 						   <?php $this->widget('bootstrap.widgets.TbButton', array(
+        						'buttonType'=>'submit',
+							'type'=>'primary',
+        						'label'=>'Save changes',
+        						'url'=>'#',
+        						'htmlOptions'=>array('data-dismiss'=>'modal'),
+    						   )); ?>
+    						   <?php $this->widget('bootstrap.widgets.TbButton', array(
+        						'label'=>'Close',
+        						'url'=>'#',
+        						'htmlOptions'=>array('data-dismiss'=>'modal'),
+    						   )); ?>
+						</div>
+ 
+					<?php $this->endWidget(); ?>
 				</div>
-	</div>
-	<div class='row'>
-		<p id="demo"></p>
 	</div>
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
-<?php
-	//$results=system("ls");
-?>
-<script>                                                                                                                                                              
-                                        $('#buttonStateful').click(function() {
-					 var btn = $(this);
-					btn.button('loading');
-					var a='<?php system('ls'); ?>');
-					
-                                        setTimeout(function() {
-						btn.button('reset')
-					 }, 3000);                                                                                                                                             
-                                        });                                                                                                                                                           
-                                                                                                                                                                                                      
-                                        /*                                                                                                                                                            
-                                        $('#buttonStateful').click(function() {                                                                                                                       
-                                                 var btn = $(this);                                                                                                                                   
-                                                btn.button('loading'); // call the loading function                                                                                                   
-                                                setTimeout(function() {                                                                                                                               
-                                                        btn.button('reset'); // call the reset function                                                                                               
-                                                        }, 3000);                                                                                                                                     
-                                                });                                                                                                                                                   
-                                        */                                                                                                                                                            
-</script>    
-

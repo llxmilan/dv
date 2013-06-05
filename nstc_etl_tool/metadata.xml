@@ -1,0 +1,28 @@
+<root>
+   <bmsdb>
+      <host>192.168.1.170</host>
+      <dbname>bmsdb</dbname>
+      <user>hive</user>
+      <passwd>123456</passwd>
+      <type>mysql</type>		
+   </bmsdb>
+   <hbmsdb>
+      <host>192.168.1.171</host>
+      <dbname>hbmsdb</dbname>
+      <port>10000</port>
+      <type>hive</type>
+   </hbmsdb>
+   <youtubedb>
+      <host>192.168.1.170</host>
+      <dbname>youtubedb</dbname>
+      <user>hive</user>
+      <passwd>123456</passwd>
+      <type>mysql</type>
+   </youtubedb>
+   <hyoutubedb>
+      <host>192.168.1.171</host>
+      <dbname>hyoutubedb</dbname>
+      <port>10000</port>
+      <type>hive</type>
+   </hyoutubedb>
+</root>

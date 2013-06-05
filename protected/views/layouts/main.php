@@ -45,6 +45,7 @@ Yii::app()->bootstrap->register()
 				array(
 					'class'=>'bootstrap.widgets.TbMenu',
 					'items'=>array(
+                                                array('label'=>'首页', 'url'=>Yii::app()->homeUrl),
 						array('label'=>'云计算', 'url'=>array('/cloudComputing/index')),
 						array('label'=>'数据可视化', 'url'=>array('/dataView/index')),
 						array('label'=>'数据仓库','url'=>array('/dataWarehouse/index')),
@@ -87,15 +88,17 @@ Yii::app()->bootstrap->register()
                         	'stacked'=>false, // whether this is a stacked menu
                         	'items'=>array(
                                 	array('label'=>'首页', 'icon'=>'home', 'url'=>array('/dataView/index')),
-                                	array('label'=>'数据报表', 'icon'=>'th','url'=>array('/videoinfo/index')),
-                                	array('label'=>'可视化图形', 'icon'=>'camera','url'=>array('/site/graph')),
+                                	array('label'=>'数据报表', 'icon'=>'th','url'=>array('/dataView/basictable')),
+                                	array('label'=>'可视化图形', 'icon'=>'camera','url'=>array('/dataView/graph')),
                         	),
                 	)); ?>
         	</div>
 	</div>
 	<div id="breadcrumbs">
 		<?php if(isset($this->breadcrumbs)):?>
-				<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array('links'=>$this->breadcrumbs,));?><!-- breadcrumbs -->
+				<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+					'homeLink'=>CHtml::link('首页',Yii::app()->homeUrl . '?r=dataView/index/'),      
+					'links'=>$this->breadcrumbs,));?><!-- breadcrumbs -->
 		<?php endif?>
 	</div>
 	<div>
@@ -104,12 +107,12 @@ Yii::app()->bootstrap->register()
 
 	<div class="clear"></div>
 </div>
-	<div class='container' style='background-color:#FEFBF3;margin-top:-5px'>
+	<div class='container' style='background-color:#312E2A;margin-top:-5px'>
 		<div class='row-fluid'>
 			<div class='span4'>
 				<div class='row-fluid'>
 					<div class='span5 offset1'>
-						<h5 class='page-header' align='left'>联系我们</h5>
+						<h5 class='page-header' align='left'><p class='muted'>联系我们</p></h5>
 					</div>
 				</div>
 				<div class='row-fluid'>
@@ -124,7 +127,7 @@ Yii::app()->bootstrap->register()
 			<div class='span4'>
 				<div class='row-fluid'>
 					<div class='span4 offset1'>		
-						<h5 class='page-header' align='left'>这里有我们...</h5>
+						<h5 class='page-header' align='left'><p class='muted'>这里有我们...</p></h5>
 					</div>
 				</div>
 				<div class='row-fluid'>
@@ -145,7 +148,7 @@ Yii::app()->bootstrap->register()
 			<div class='span4'>
 				<div class='row-fluid'>
 					<div class='span4 offset1'>
-						<h5 class='page-header'>关于我们</h5>
+						<h5 class='page-header'><p class='muted'>关于我们</p></h5>
 					</div>
 				</div>
 				 <div class='row-fluid'>
@@ -159,7 +162,7 @@ Yii::app()->bootstrap->register()
 
 			</div>
 		</div>
-		<div class='row-fluid' align='center' style='background-color:#497477;font-size:5px'>
+		<div class='row-fluid' align='center' style='background-color:white;font-size:5px'>
 			Copyright &copy; <?php echo date('Y'); ?> by NCTC.<br/>
 			All Rights Reserved.<br/>
 			<?php echo Yii::powered(); ?>

@@ -3,8 +3,8 @@
 /* @var $model UserVisitCategoryDaily */
 
 $this->breadcrumbs=array(
-	'数据表'=>array('/site/graph'),
-	'数据可视化',
+	'数据列表'=>array('/dataView/graph'),
+	'可视化图形',
 );
 
 $this->menu=array(

@@ -20,7 +20,14 @@
                                 */
                                 ),
                         )); ?>
-                </div>
+           	<div class='row-fluid' style='margin-left:20px'>
+                        <span class="label label-info">
+                                <?php echo Yii::app()->user->name?>
+                        </span>
+                </div>               
+
+		</div>
+
                 <div class='span10'>
                 	<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 		</div>

@@ -3,8 +3,8 @@
 /* @var $model UserVisitCategoryDaily */
 
 $this->breadcrumbs=array(
-	'User Visit Category Dailies'=>array('index'),
-	'Manage',
+	'数据列表'=>array('dataView/basictable'),
+	'数据报表',
 );
 
 $this->menu=array(

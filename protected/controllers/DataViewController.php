@@ -30,4 +30,23 @@ class DataViewController extends Controller
                 // using the default layout 'protected/views/layouts/main.php'
                 $this->render('index');
         }
+	
+	
+	public function actionGraph()
+        {
+                $dataProvider=new CActiveDataProvider('TableInfo');
+                $this->render('graph',array(
+                        'dataProvider'=>$dataProvider,
+                ));
+        }
+
+	public function actionBasictable()
+	{
+		$dataProvider=new CActiveDataProvider('TableInfo');
+                $this->render('basictable',array(
+                        'dataProvider'=>$dataProvider,
+                ));
+
+	}
+
 }

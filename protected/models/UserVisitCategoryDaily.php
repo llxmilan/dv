@@ -97,4 +97,5 @@ class UserVisitCategoryDaily extends CActiveRecord
 			'pagination'=>array('pagesize'=>20),	
 		));
 	}
+
 }

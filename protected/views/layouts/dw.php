@@ -46,6 +46,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/protected/e
 				array(
 					'class'=>'bootstrap.widgets.TbMenu',
 					'items'=>array(
+                                                array('label'=>'首页', 'url'=>Yii::app()->homeUrl),					
 						array('label'=>'云计算', 'url'=>array('/cloudComputing/index')),
 						array('label'=>'数据可视化', 'url'=>array('/dataView/index')),
 						array('label'=>'数据仓库','url'=>array('/dataWarehouse/index')),
@@ -80,9 +81,18 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/protected/e
                         	'stacked'=>false, // whether this is a stacked menu
                         	'items'=>array(
                                 	array('label'=>'首页', 'icon'=>'home', 'url'=>array('/dataWarehouse/index')),
-                    	            	array('label'=>'ETL流程', 'icon'=>'th','url'=>array('/flowInfo/index')),
-                                	array('label'=>'流程注册', 'icon'=>'leaf','url'=>array('/flowSchedule/index')),
+                    	            	array('label'=>'Hadoop管理平台', 'icon'=>'hdd','items'=>array(
+						array('label'=>'HDFS文件系统', 'icon'=>'tag','url'=>'http://192.168.1.171:50070/'),
+	                                        array('label'=>'MapReduce任务', 'icon'=>'tasks','url'=>'http://192.168.1.171:50030/'),
+                                                array('label'=>'Hbase数据库', 'icon'=>'tasks','url'=>'http://192.168.1.171:60010/'),
+						
+						)),
+                                        array('label'=>'Mysql数据仓库', 'icon'=>'file','url'=>array('#')),
+                         	   	array('label'=>'ETL流程', 'icon'=>'th','url'=>array('/flowInfo/index')),
+				      	array('label'=>'流程注册', 'icon'=>'leaf','url'=>array('/flowSchedule/index')),
 					array('label'=>'数据查询', 'icon'=>'camera','url'=>array('#')),
+
+
 
                         	),
                 	)); ?>
@@ -90,7 +100,8 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/protected/e
 	</div>
 	<div id="breadcrumbs"  style="margin-left:10%;margin-right:10%">
 		<?php if(isset($this->breadcrumbs)):?>
-				<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array('links'=>$this->breadcrumbs,));?><!-- breadcrumbs -->
+				<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+					'links'=>$this->breadcrumbs,));?><!-- breadcrumbs -->
 		<?php endif?>
 	</div>
 	<div>

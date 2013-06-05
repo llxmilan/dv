@@ -16,7 +16,7 @@
 	<!--?php echo $form->errorSummary($model); ?-->
 	<div class='row'>
 		<div  style='margin-left:20px'>
-			<h3>欢迎加入数据可视化网站</h3>
+			<h3>欢迎加入我们的网站</h3>
 			<div class="row">
 				<?php echo $form->labelEx($model,'用户名'); ?>
 				<?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>128)); ?>

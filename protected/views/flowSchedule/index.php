@@ -40,7 +40,6 @@
                                 'dataProvider'=>$model->search(),
                                 //'filter'=>$model,
                                 'columns'=>array(
-                                        'fs_id',
                                         'fs_name',
                                         'fs_type',
                                         'fs_reload',

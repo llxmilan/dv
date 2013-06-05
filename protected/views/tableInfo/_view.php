@@ -17,5 +17,9 @@
 	<?php echo CHtml::encode($data->tb_comment); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tb_graph')); ?>:</b>
+	<?php echo CHtml::encode($data->tb_graph); ?>
+	<br />
+
 
 </div>

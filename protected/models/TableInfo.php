@@ -7,6 +7,7 @@
  * @property integer $tb_id
  * @property string $tb_name
  * @property string $tb_comment
+ * @property integer $tb_graph
  */
 class TableInfo extends CActiveRecord
 {
@@ -36,12 +37,12 @@ class TableInfo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tb_id', 'numerical', 'integerOnly'=>true),
+			array('tb_id, tb_graph', 'numerical', 'integerOnly'=>true),
 			array('tb_name', 'length', 'max'=>10),
 			array('tb_comment', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('tb_id, tb_name, tb_comment', 'safe', 'on'=>'search'),
+			array('tb_id, tb_name, tb_comment, tb_graph', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,6 +66,7 @@ class TableInfo extends CActiveRecord
 			'tb_id' => 'Tb',
 			'tb_name' => 'Tb Name',
 			'tb_comment' => 'Tb Comment',
+			'tb_graph' => 'Tb Graph',
 		);
 	}
 
@@ -82,6 +84,7 @@ class TableInfo extends CActiveRecord
 		$criteria->compare('tb_id',$this->tb_id);
 		$criteria->compare('tb_name',$this->tb_name,true);
 		$criteria->compare('tb_comment',$this->tb_comment,true);
+		$criteria->compare('tb_graph',$this->tb_graph);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

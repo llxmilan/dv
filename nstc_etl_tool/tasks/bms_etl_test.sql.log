@@ -1,0 +1,5 @@
+Action=extract Type=hive[Args]
+[Template]Action=preload Type=mysql[Args]
+[Template]Action=targetddl Type=mysql[Args]
+[Template]Action=dbload Type=mysql[Args]
+[Template]

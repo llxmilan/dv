@@ -37,22 +37,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/protected/e
   		});
 	</script>
 
-                <style>
-                        .flex {position:relative;width:850px;min-height:300px;margin:0 auto;border:0px solid red;margin-top:10px;}
-                        .flex a {background-color:white;display:block;width:100px;height:100px;border-radius:8px;position:absolute;background-repeat:no-repeat;background-position:center;border:3px solid white;cursor:pointer;text-align:left;text-shadow:1px 1px 20px #000;color:white;font-size:18px;font-weight:bold;text-indent:10px;line-height:30px;}
-                        [bg=a] {background-image:url(images/windowsAzure.png);}
-                        [bg=b] {background-image:url(images/windowsAzure.png);background-size:300px auto;}
-                        [bg=c] {background-image:url(http://farm6.staticflickr.com/5117/7410370290_0935419fc3.jpg);}
-                        [bg=d] {background-image:url(http://farm8.staticflickr.com/7262/7419245080_bb752ed1d6.jpg);}
-                        [bg=e] {background-image:url(http://farm8.staticflickr.com/7003/6468321069_3375be3073_z.jpg);background-size:auto 280px;}
-                        [bg=f] {background-image:url(http://farm8.staticflickr.com/7220/7342556872_46cddaf9b0.jpg);background-size:auto 280px;}
-                        [bg=g] {background-image:url(images/amazon_aws.png);background-size:auto 200px;}
-                        [bg=h] {background-image:url(http://farm8.staticflickr.com/7076/7286717012_6e6b450243.jpg);}
-                        [bg=i] {background-image:url(http://farm8.staticflickr.com/7129/7452167788_a3f6aa3104.jpg);background-size:auto 200px;}
-                        [bg=j] {background-image:url(http://farm8.staticflickr.com/7153/6480022425_a8d419e663_z.jpg);background-size:auto 280px;}
-                        [bg=k] {background-image:url(http://farm8.staticflickr.com/7225/7269592732_c4b7918626.jpg);background-size:auto 280px;}
-                </style>
-
 </head>
 <body>
 
@@ -73,6 +57,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/protected/e
 				array(
 					'class'=>'bootstrap.widgets.TbMenu',
 					'items'=>array(
+                                                array('label'=>'首页', 'url'=>Yii::app()->homeUrl),
 						array('label'=>'云计算', 'url'=>array('/cloudComputing/index')),
 						array('label'=>'数据可视化', 'url'=>array('/dataView/index')),
 						array('label'=>'数据仓库','url'=>array('/dataWarehouse/index')),

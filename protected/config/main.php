@@ -29,7 +29,7 @@ return array(
 	),
 	'components'=>array(
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=youtubedb',
+			'connectionString' => 'mysql:host=192.168.1.170;dbname=youtubedb',
 			'emulatePrepare' => true,
 			'username' => 'hive',
 			'password' => '123456',

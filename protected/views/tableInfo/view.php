@@ -24,5 +24,6 @@ $this->menu=array(
 		'tb_id',
 		'tb_name',
 		'tb_comment',
+		'tb_graph',
 	),
 )); ?>

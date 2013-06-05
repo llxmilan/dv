@@ -63,11 +63,11 @@ class FlowSchedule extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'fs_id' => 'Fs',
-			'fs_name' => 'Fs Name',
-			'fs_type' => 'Fs Type',
-			'fs_reload' => 'Fs Reload',
-			'fs_delta' => 'Fs Delta',
+			'fs_id' => 'Fs Id',
+			'fs_name' => '流程名称',
+			'fs_type' => '流程类型',
+			'fs_reload' => '是否重载',
+			'fs_delta' => '间隔时间',
 		);
 	}
 

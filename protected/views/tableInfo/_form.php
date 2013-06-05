@@ -33,6 +33,12 @@
 		<?php echo $form->error($model,'tb_comment'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'tb_graph'); ?>
+		<?php echo $form->textField($model,'tb_graph'); ?>
+		<?php echo $form->error($model,'tb_graph'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

@@ -11,15 +11,8 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'fs_id'); ?>
-		<?php echo $form->textField($model,'fs_id'); ?>
-		<?php echo $form->error($model,'fs_id'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'fs_name'); ?>
@@ -29,13 +22,29 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'fs_type'); ?>
-		<?php echo $form->textField($model,'fs_type',array('size'=>20,'maxlength'=>20)); ?>
+                <?php echo $form->radioButtonList($model,'fs_type',
+                        array('time'=>'按照时间先后','dependence'=>'按照依赖关系'),
+                        array(  
+                                'template'=>'{input}{label}',
+                                'separator'=>'',
+                                'labelOptions'=>array('style'=>'margin-left:-20px;padding-left:0px;padding-right:40px'),
+                                'style'=>'float:left;'
+                                )
+                        );?>		
 		<?php echo $form->error($model,'fs_type'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'fs_reload'); ?>
-		<?php echo $form->textField($model,'fs_reload'); ?>
+                <?php echo $form->radioButtonList($model,'fs_reload',array('1'=>'是','0'=>'否'),
+                        array(  
+                                'template'=>'{input}{label}',
+                                'separator'=>'',
+                                'labelOptions'=>array('style'=>'margin-left:-80px;padding-left:-30px;padding-right:40px'),
+                                'style'=>'float:left;'
+                                )
+                        ); ?>
+	
 		<?php echo $form->error($model,'fs_reload'); ?>
 	</div>
 
@@ -46,7 +55,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? '确定' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

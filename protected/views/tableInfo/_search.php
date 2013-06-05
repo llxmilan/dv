@@ -26,6 +26,11 @@
 		<?php echo $form->textField($model,'tb_comment',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'tb_graph'); ?>
+		<?php echo $form->textField($model,'tb_graph'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>
