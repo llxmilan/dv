@@ -15,7 +15,7 @@ select
 	staff_email,
 	unix_timestamp()
 from bms_staff 
-limit 4
+limit 3
 
 ##preload##
 drop table bms_etl_test

@@ -46,6 +46,7 @@ Yii::app()->bootstrap->register()
 					'class'=>'bootstrap.widgets.TbMenu',
 					'items'=>array(
                                                 array('label'=>'首页', 'url'=>Yii::app()->homeUrl),
+						array('label'=>'最新新闻', 'url'=>array('/nEWS/index')),
 						array('label'=>'云计算', 'url'=>array('/cloudComputing/index')),
 						array('label'=>'数据可视化', 'url'=>array('/dataView/index')),
 						array('label'=>'数据仓库','url'=>array('/dataWarehouse/index')),

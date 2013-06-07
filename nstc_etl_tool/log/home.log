@@ -1,0 +1,35 @@
+--------------------------------------------------------------------------------
+Action=extract Type=mysql
+[Args]
+[Template]
+select 
+	staff_id,
+	staff_name,
+	staff_email,
+	unix_timestamp()
+from bms_staff 
+limit 4
+extract success
+--------------------------------------------------------------------------------
+Action=preload Type=hive
+[Args]
+[Template]
+drop table bms_etl_test
+preload success
+--------------------------------------------------------------------------------
+Action=targetddl Type=hive
+[Args]
+[Template]
+create table if not exists `bms_etl_test` (
+        `staff_id` int,
+	`staff_name` string,
+	`staff_email` string,
+	`datekey` int	
+)ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n'
+targetddl success
+--------------------------------------------------------------------------------
+Action=dbload Type=hive
+[Args]
+[Template]
+load data local inpath '/tmp/temp.txt' into table bms_etl_test
+dbload success
